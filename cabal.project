@@ -1,0 +1,5 @@
+packages: .
+
+
+package lens-process
+    tests: True
