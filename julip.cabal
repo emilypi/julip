@@ -1,23 +1,21 @@
-cabal-version:       2.4
-
-name:                julip
-version:             0.1.0.0
-synopsis:            An implementation of Pijul in Haskell
-description:         An implementation of Pijul in Haskell
-bug-reports:         https://github.com/emilypi/julip/issues
-license:             BSD-3-Clause
-license-file:        LICENSE
-author:              Emily Pillmore
-maintainer:          emily@kadena.io
-copyright:           (c) 2019 Emily Pillmore
-category:            Development
-build-type:          Custom
+cabal-version:      2.4
+name:               julip
+version:            0.1.0.0
+synopsis:           An implementation of Pijul in Haskell
+description:        An implementation of Pijul in Haskell
+bug-reports:        https://github.com/emilypi/julip/issues
+license:            BSD-3-Clause
+license-file:       LICENSE
+author:             Emily Pillmore
+maintainer:         emily@kadena.io
+copyright:          (c) 2019 Emily Pillmore
+category:           Development
+build-type:         Custom
 extra-source-files:
   CHANGELOG.md
   README.md
 
-tested-with:         GHC ==8.6.5
-
+tested-with:        GHC ==8.6.5
 
 source-repository head
   type:     git
@@ -25,52 +23,55 @@ source-repository head
 
 custom-setup
   setup-depends:
-      base           >=4.0 && <5
+    , base           ^>=4.12.0.0
     , Cabal
-    , cabal-doctest  >=1   && <1.1
-
+    , cabal-doctest
 
 library
-  exposed-modules:     Julip
+  exposed-modules:  Julip
+
   -- other-modules:
   -- other-extensions:
-  build-depends:       base ^>=4.12.0.0
-                     , adjunctions
-                     , bifunctors
-                     , bytestring
-                     , containers
-                     , filepath
-                     , kan-extensions
-                     , lens
-                     , lens-process
-                     , process
-                     , profunctors
-                     , text
-                     , unordered-containers
-  hs-source-dirs:      src
-  default-language:    Haskell2010
+  build-depends:
+    , adjunctions
+    , base                  ^>=4.12.0.0
+    , bifunctors
+    , bytestring
+    , containers
+    , filepath
+    , kan-extensions
+    , lens
+    , lens-process
+    , process
+    , profunctors
+    , text
+    , unordered-containers
+
+  hs-source-dirs:   src
+  default-language: Haskell2010
   ghc-options:
 
 executable julip
-  main-is:             Main.hs
+  main-is:          Main.hs
+
   -- other-modules:
   -- other-extensions:
-  build-depends:       base ^>=4.12.0.0
-                     , julip
-                     , optparse-applicative
+  build-depends:
+    , base                  ^>=4.12.0.0
+    , julip
+    , optparse-applicative
 
-
-  hs-source-dirs:      exe
-  default-language:    Haskell2010
+  hs-source-dirs:   exe
+  default-language: Haskell2010
 
 test-suite tasty
   main-is:          JulipTests.hs
   type:             exitcode-stdio-1.0
   build-depends:
-      base ^>=4.12.0.0
+    , base          ^>=4.12.0.0
     , filepath
     , lens
-    , lens-process
+    , julip
     , process
     , tasty
     , tasty-hunit
@@ -83,11 +84,9 @@ test-suite doctests
   main-is:           doctests.hs
   type:              exitcode-stdio-1.0
   build-depends:
-      base          ^>=4.12.0.0
+    , base          ^>=4.12.0.0
     , doctest
-    , lens
-    , lens-process
-    , process
+    , julip
 
   hs-source-dirs:    test
   default-language:  Haskell2010
