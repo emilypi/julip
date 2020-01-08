@@ -1,8 +1,9 @@
 cabal-version:      2.4
 name:               julip
 version:            0.1.0.0
-synopsis:           An implementation of Pijul in Haskell
-description:        An implementation of Pijul in Haskell
+synopsis:           An implementation of the Category of Patches and Files in Haskell
+description:
+  An implementation of the Category of Patches and Files in Haskell
 bug-reports:        https://github.com/emilypi/julip/issues
 license:            BSD-3-Clause
 license-file:       LICENSE
@@ -10,7 +11,7 @@ author:             Emily Pillmore
 maintainer:         emily@kadena.io
 copyright:          (c) 2019 Emily Pillmore
 category:           Development
-build-type:         Custom
+build-type:         Simple
 extra-source-files:
   CHANGELOG.md
   README.md
@@ -21,31 +22,13 @@ source-repository head
   type:     git
   location: https://github.com/emilypi/julip.git
 
-custom-setup
-  setup-depends:
-    , base           ^>=4.12.0.0
-    , Cabal
-    , cabal-doctest
-
 library
-  exposed-modules:  Julip
+  exposed-modules:
 
   -- other-modules:
   -- other-extensions:
-  build-depends:
-    , adjunctions
-    , base                  ^>=4.12.0.0
-    , bifunctors
-    , bytestring
-    , containers
-    , filepath
-    , kan-extensions
-    , lens
-    , lens-process
-    , process
-    , profunctors
-    , text
-    , unordered-containers
+  build-depends:    base                  ^>=4.12.0.0
+
 
   hs-source-dirs:   src
   default-language: Haskell2010
@@ -69,26 +52,9 @@ test-suite tasty
   type:             exitcode-stdio-1.0
   build-depends:
     , base          ^>=4.12.0.0
-    , filepath
-    , lens
-    , julip
-    , process
     , tasty
     , tasty-hunit
 
   hs-source-dirs:   test
   default-language: Haskell2010
   ghc-options:      -Wall -threaded -rtsopts -with-rtsopts=-N
-
-test-suite doctests
-  main-is:           doctests.hs
-  type:              exitcode-stdio-1.0
-  build-depends:
-    , base          ^>=4.12.0.0
-    , doctest
-    , julip
-
-  hs-source-dirs:    test
-  default-language:  Haskell2010
-  ghc-options:       -Wall -threaded
-  x-doctest-options: --fast
