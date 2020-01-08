@@ -4,11 +4,8 @@ let
 
   inherit (nixpkgs) pkgs;
 
-  f = { mkDerivation, adjunctions, base, bifunctors, bytestring
-      , Cabal, cabal-doctest, containers, doctest, filepath
-      , kan-extensions, lens, lens-process, optparse-applicative, process
-      , profunctors, stdenv, tasty, tasty-hunit, text
-      , unordered-containers
+  f = { mkDerivation, base, optparse-applicative, stdenv, tasty
+      , tasty-hunit
       }:
       mkDerivation {
         pname = "julip";
@@ -16,18 +13,11 @@ let
         src = ./.;
         isLibrary = true;
         isExecutable = true;
-        setupHaskellDepends = [ base Cabal cabal-doctest ];
-        libraryHaskellDepends = [
-          adjunctions base bifunctors bytestring containers filepath
-          kan-extensions lens lens-process process profunctors text
-          unordered-containers
-        ];
+        libraryHaskellDepends = [ base ];
         executableHaskellDepends = [ base optparse-applicative ];
-        testHaskellDepends = [
-          base doctest filepath lens lens-process process tasty tasty-hunit
-        ];
+        testHaskellDepends = [ base tasty tasty-hunit ];
         doHaddock = false;
-        description = "An implementation of Pijul in Haskell";
+        description = "An implementation of the Category of Patches and Files in Haskell";
         license = stdenv.lib.licenses.bsd3;
       };
 
